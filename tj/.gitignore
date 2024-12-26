@@ -1,0 +1,7 @@
+data*
+plot*
+
+!data_common/hg38_gaps.bed
+!data/coverage
+!data_no_repeat/coverage
+!data/05252022_Libraryshareinfo
