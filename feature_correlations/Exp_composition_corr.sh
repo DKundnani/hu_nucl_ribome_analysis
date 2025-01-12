@@ -26,8 +26,22 @@ outfolder=$(echo 'locationHM/raroundTSS')
 mkdir $outfolder
 bash ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/annotate.sh -r $file -s -c -o $outfolder -b $bedfiles &
 
+#Getting trends
 
+for nuc in A C G T; do 
+echo $nuc
+outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS')
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_rawHEK -c '#D62728' -e 13 -r 16 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_rawKO1 -c '#E377C2' -e 13 -r 17 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_rawKO2 -c '#9467BD' -e 13 -r 18 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_percHEK -c '#D62728' -e 13 -r 16 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_percKO1 -c '#E377C2' -e 13 -r 17 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_percKO2 -c '#9467BD' -e 13 -r 18 -y 8 -o locationHM/ribo_exp/
+done
 
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts.tsv -c $outfolder/all_counts.tsv -g $genome -f $libmeta -t $subtypecol -o ${outfolder}/$(basename $file)
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts_same.tsv -c $outfolder/all_counts.tsv -f $libmeta -t $subtypecol  -o ${outfolder}/same_$(basename $file)
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts_opp.tsv -c $outfolder/all_counts.tsv -f $libmeta -t $subtypecol  -o ${outfolder}/opp_$(basename $file)
+for nuc in A C G T; do 
+echo $nuc
+outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS')
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp/ -f r${nuc}aroundTSS_regions_WTexp_raw -y 20 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp/ -f r${nuc}aroundTSS_regions_WTexp_perc -y 1 -o locationHM/ribo_exp/
+done
