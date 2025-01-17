@@ -68,6 +68,8 @@ done
 for nuc in A C G T; do 
 echo $nuc
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS')
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp/ -f r${nuc}aroundTSS_regions_WTexp_raw -y 20 -o locationHM/ribo_exp/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp/ -f r${nuc}aroundTSS_regions_WTexp_perc -y 1 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp/ -f r${nuc}aroundTSS_regions_WTexp_raw_ -y 20 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp/ -f r${nuc}aroundTSS_regions_WTexp_perc_ -y 1 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp/ -f r${nuc}aroundTSS_regions_WTexp_norm_ -y 4 -o locationHM/ribo_exp/
+
 done
