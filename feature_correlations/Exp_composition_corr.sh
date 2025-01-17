@@ -54,12 +54,15 @@ done
 for nuc in A C G T; do 
 echo $nuc
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS')
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_rawHEK -c '#D62728' -e 13 -r 16 -y 8 -o locationHM/ribo_exp/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_rawKO1 -c '#E377C2' -e 13 -r 17 -y 8 -o locationHM/ribo_exp/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_rawKO2 -c '#9467BD' -e 13 -r 18 -y 8 -o locationHM/ribo_exp/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_percHEK -c '#D62728' -e 13 -r 16 -y 8 -o locationHM/ribo_exp/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_percKO1 -c '#E377C2' -e 13 -r 17 -y 8 -o locationHM/ribo_exp/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_percKO2 -c '#9467BD' -e 13 -r 18 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_HEK -c '#D62728' -e 13 -r 25 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_KO1 -c '#E377C2' -e 13 -r 26 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_KO2 -c '#9467BD' -e 13 -r 27 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_perc_HEK -c '#D62728' -e 13 -r 25 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_perc_KO1 -c '#E377C2' -e 13 -r 26 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_perc_KO2 -c '#9467BD' -e 13 -r 27 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_WTexp_norm_HEK -c '#D62728' -e 13 -r 25 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_WTexp_norm_KO1 -c '#E377C2' -e 13 -r 26 -y 8 -o locationHM/ribo_exp/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_WTexp_norm_KO2 -c '#9467BD' -e 13 -r 27 -y 8 -o locationHM/ribo_exp/
 done
 
 for nuc in A C G T; do 
