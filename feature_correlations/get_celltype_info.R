@@ -112,7 +112,7 @@ write.table(anno_average, paste(opt$output_prefix,"_regions_perc_avg.tsv", sep="
 anno_norm_perc<-anno[,c(1:(ncol-length(annotation_order)))]
 
 for (i in unique(order$Cellline)) {
-  anno_norm_perc[,i]<-rowMeans(anno[order[order$Cellline==i,'Filename']], na.rm=TRUE)/anno[,opt$background_perc]/2
+  anno_norm_perc[,i]<-rowMeans(anno[order[order$Cellline==i,'Filename']], na.rm=TRUE)/(anno[,opt$background_perc]/2)
 }
 
 write.table(anno_norm_perc, paste(opt$output_prefix,"_regions_norm_perc.tsv", sep=""),sep="\t", row.names=F, col.names=T, quote=F)
