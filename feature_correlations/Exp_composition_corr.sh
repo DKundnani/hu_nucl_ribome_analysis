@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #creating reference
+conda activate conda_env
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis
 bedtools nuc -fi $hgref -bed anno/standardanno/RNAseq/sorted_metadata_500aroundTSS.bed -s | tail -n+2  > anno/standardanno/RNAseq/sorted_metadata_500aroundTSS_withnuc.bed
 #16_pct_at        17_pct_gc       18_num_A        19_num_C        20_num_G        21_num_T        22_num_N        23_num_oth      24_seq_len
@@ -34,6 +35,7 @@ mkdir $outfolder
 bash ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/annotate.sh -r $file -s -c -o $outfolder -b $bedfiles &
 
 #Getting normalized percentages
+conda activate r_env
 for nuc in A T; do
 bedfiles=$(echo '/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/subnfiltbed/nucl/noXY/poly/'${nuc}'/*bed')
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS')
