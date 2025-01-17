@@ -57,7 +57,7 @@ done
 #Getting trends wrt to HEKExp
 for nuc in A C G T; do 
 echo $nuc
-outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS')
+outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_HEK -c '#D62728' -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_KO1 -c '#E377C2' -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_KO2 -c '#9467BD' -e 13 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
@@ -71,7 +71,7 @@ done
 
 for nuc in A C G T; do 
 echo $nuc
-outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS')
+outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_WTexp_raw_ -y 100 -o locationHM/ribo_exp${bin}/
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_WTexp_perc_ -y 1 -o locationHM/ribo_exp${bin}/
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_WTexp_norm_ -y 4 -o locationHM/ribo_exp${bin}/
