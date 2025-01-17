@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #creating reference
-conda activate conda_env
+conda activate r_env
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/anno/standardanno/RNAseq
 bedtools flank -s -l 1 -r 0 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i metadata.bed | bedtools slop -s -l 499 -r 500 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools sort -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | grep -v chrX | grep -v chrY > sorted_metadata_500aroundTSS.bed
 bedtools flank -s -l 1 -r 0 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i metadata.bed | bedtools slop -s -l 999 -r 1000 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools sort -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | grep -v chrX | grep -v chrY > sorted_metadata_1000aroundTSS.bed
@@ -41,7 +41,6 @@ mkdir $outfolder
 bash ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/annotate.sh -r $file -s -c -o $outfolder -b $bedfiles &
 
 #Getting normalized percentages
-conda activate r_env
 for nuc in A T; do
 bedfiles=$(echo '/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/subnfiltbed/nucl/noXY/poly/'${nuc}'/*bed')
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
