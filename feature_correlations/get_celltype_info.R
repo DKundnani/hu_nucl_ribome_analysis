@@ -109,6 +109,9 @@ for (i in unique(order$Cellline)) {
 
 write.table(anno_average, paste(opt$output_prefix,"_regions_perc_avg.tsv", sep=""),sep="\t", row.names=F, col.names=T, quote=F)
 
+
+
+
 anno_norm_perc<-anno[,c(1:(ncol-length(annotation_order)))]
 
 for (i in unique(order$Cellline)) {
