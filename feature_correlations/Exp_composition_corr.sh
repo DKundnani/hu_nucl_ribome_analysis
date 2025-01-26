@@ -43,15 +43,15 @@ Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis
 sed -i 's/_nucl//g' $outfolder/all_counts.tsv
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts.tsv -c $outfolder/all_counts.tsv -g $genome -f $libmeta -t 1 -o ${outfolder}/raroundTSS
 #Trends from EF
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_WTexp_EF_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}_2/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_KO1exp_EF_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}_2/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_KO2exp_EF_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}_2/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_WTexp_EF_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}_2/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_KO1exp_EF_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}_2/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_KO2exp_EF_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}_2/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f raroundTSS_regions_WTexp_EF_ -y 6 -o locationHM/ribo_exp${bin}_2/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f raroundTSS_regions_KO1exp_EF_ -y 6 -o locationHM/ribo_exp${bin}_2/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f raroundTSS_regions_KO2exp_EF_ -y 6 -o locationHM/ribo_exp${bin}_2/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_WTexp_EF_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_KO1exp_EF_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_KO2exp_EF_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_WTexp_EF_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_KO1exp_EF_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_KO2exp_EF_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f raroundTSS_regions_WTexp_EF_ -y 6 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f raroundTSS_regions_KO1exp_EF_ -y 6 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f raroundTSS_regions_KO2exp_EF_ -y 6 -o locationHM/ribo_exp${bin}/
 
 
 #Getting normalized percentages
@@ -74,26 +74,26 @@ done
 for nuc in A C G T; do 
 echo $nuc
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_KO2 -c '#9467BD' -p -e 13 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_perc_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_perc_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_perc_KO2 -c '#9467BD' -p -e 13 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_WTexp_norm_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_WTexp_norm_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_WTexp_norm_KO2 -c '#9467BD' -p -e 13 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_EF_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_EF_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_WTexp_raw_KO2 -c '#9467BD' -p -e 13 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_perc_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_perc_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_perc_KO2 -c '#9467BD' -p -e 13 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_WTexp_norm_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_WTexp_norm_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_WTexp_norm_KO2 -c '#9467BD' -p -e 13 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_EF_HEK -c '#D62728' -p -e 13 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_WTexp_EF_KO1 -c '#E377C2' -p -e 13 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
 done
 
 for nuc in A C G T; do 
 echo $nuc
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f r${nuc}aroundTSS_regions_WTexp_raw_ -y 100 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f r${nuc}aroundTSS_regions_WTexp_perc_ -y 1 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_WTexp_raw_ -y 100 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_WTexp_perc_ -y 1 -o locationHM/ribo_exp${bin}/ &
 #Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_WTexp_norm_ -y 4 -o locationHM/ribo_exp${bin}/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f r${nuc}aroundTSS_regions_WTexp_EF_ -y 6 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_WTexp_EF_ -y 6 -o locationHM/ribo_exp${bin}/ &
 done
 
 
@@ -102,26 +102,26 @@ done
 for nuc in A C G T; do 
 echo $nuc
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO1exp_raw_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO1exp_raw_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO1exp_raw_KO2 -c '#9467BD' -p -e 14 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_perc_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_perc_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_perc_KO2 -c '#9467BD' -p -e 14 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}/
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_KO2 -c '#9467BD' -p -e 14 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_EF_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_EF_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO1exp_raw_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO1exp_raw_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO1exp_raw_KO2 -c '#9467BD' -p -e 14 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_perc_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_perc_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_perc_KO2 -c '#9467BD' -p -e 14 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}/
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_KO2 -c '#9467BD' -p -e 14 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_EF_HEK -c '#D62728' -p -e 14 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_EF_KO1 -c '#E377C2' -p -e 14 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
 done
 
 for nuc in A C G T; do 
 echo $nuc
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f r${nuc}aroundTSS_regions_KO1exp_raw_ -y 100 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f r${nuc}aroundTSS_regions_KO1exp_perc_ -y 1 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_KO1exp_raw_ -y 100 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_KO1exp_perc_ -y 1 -o locationHM/ribo_exp${bin}/ &
 #Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_KO1exp_norm_ -y 4 -o locationHM/ribo_exp${bin}/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f r${nuc}aroundTSS_regions_KO1exp_EF_ -y 6 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_KO1exp_EF_ -y 6 -o locationHM/ribo_exp${bin}/ &
 done
 
 
@@ -129,26 +129,26 @@ done
 for nuc in A C G T; do 
 echo $nuc
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO2exp_raw_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO2exp_raw_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO1exp_raw_KO2 -c '#9467BD' -p -e 15 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO2exp_perc_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO2exp_perc_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_perc_KO2 -c '#9467BD' -p -e 15 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}_2/
-#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_KO2 -c '#9467BD' -p -e 15 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_KO2exp_EF_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_KO2exp_EF_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO2exp_raw_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO2exp_raw_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_counts_sum.tsv -n r${nuc}aroundTSS_regions_KO1exp_raw_KO2 -c '#9467BD' -p -e 15 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO2exp_perc_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO2exp_perc_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_perc_avg.tsv -n r${nuc}aroundTSS_regions_KO1exp_perc_KO2 -c '#9467BD' -p -e 15 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}/
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}_2/
+#Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_norm_perc.tsv -n r${nuc}aroundTSS_regions_KO1exp_norm_KO2 -c '#9467BD' -p -e 15 -r 27 -y 8 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_KO2exp_EF_HEK -c '#D62728' -p -e 15 -r 25 -y 8 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/r${nuc}aroundTSS_regions_EF_avg.tsv -n r${nuc}aroundTSS_regions_KO2exp_EF_KO1 -c '#E377C2' -p -e 15 -r 26 -y 8 -o locationHM/ribo_exp${bin}/ &
 done
 
 for nuc in A C G T; do 
 echo $nuc
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f r${nuc}aroundTSS_regions_KO2exp_raw_ -y 100 -o locationHM/ribo_exp${bin}/ &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f r${nuc}aroundTSS_regions_KO2exp_perc_ -y 1 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_KO2exp_raw_ -y 100 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_KO2exp_perc_ -y 1 -o locationHM/ribo_exp${bin}/ &
 #Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_KO2exp_norm_ -y 4 -o locationHM/ribo_exp${bin}/
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}_2/ -f r${nuc}aroundTSS_regions_KO2exp_EF_ -y 6 -o locationHM/ribo_exp${bin}/ &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_KO2exp_EF_ -y 6 -o locationHM/ribo_exp${bin}/ &
 done
 
 
