@@ -134,7 +134,7 @@ p<-ggplot(data, aes(x=groups,y=y, fill=groups))+
   scale_x_discrete( labels=stats[3][[1]]$FeatureX) + #Alternate to have FeatureX: stats[3][[1]]$Featurex or #stats[2][[1]]
   scale_y_continuous(limits = c(ymin,ymax),n.breaks=4, name = "rNMP Enrichment")+
   theme_classic(base_size=20)+
-  #geom_abline(intercept = stats[4][[1]]$coefficients[1], slope = stats[4][[1]]$coefficients[2], color = "black", size = 0.2)+
+  geom_abline(intercept = stats[4][[1]]$coefficients[1], slope = stats[4][[1]]$coefficients[2], color = "black", size = 0.2)+
   stat_cor(label.x = 3, label.y = 20)+
   #stat_summary(fun = "mean", geom="text", size = 2, hjust=0,vjust=20, label=round(stats[[3]]$ymean,2))+
   stat_summary(fun = "median", geom="text", size = 1.2, vjust=5,label=round(stats[[3]]$ymean,2))+
@@ -144,7 +144,7 @@ p<-ggplot(data, aes(x=groups,y=y, fill=groups))+
   #scale_fill_manual(values=get_brewer_pal("BuPu", n= bins, contrast = c(0.3, 0.6), stretch = F, plot = F))+
   #guides(colour = "colorbar", size = "legend", shape = "none")+
   #guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10))+
-  #ggtitle(bquote(italic(adj.R)^2 == .(format(TSS_stats[[3]], digits = 3))~";"~italic(p) == .(format(TSS_stats[[5]], digits = 3))) )+
+  ggtitle(bquote(italic(adj.R)^2 == .(format(TSS_stats[[3]], digits = 3))~";"~italic(p) == .(format(TSS_stats[[5]], digits = 3))~";"~italic(slope) == .(format(stats[[4]]$coefficients[2], digits = 3))) )+
   theme(legend.position = "none",panel.border = element_blank(),
         plot.title = element_text(color="black",size=11,hjust=0.5),
         axis.title= element_blank(),
