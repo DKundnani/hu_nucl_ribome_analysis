@@ -133,7 +133,7 @@ ymin=0; if(min(data$y)<0) {ymin=-ymax}
 p<-ggplot(data, aes(x=groups,y=y, fill=groups))+
   geom_violin(width=1,color="grey30",lwd = 0.1,position=dodge)+
   geom_boxplot(width=0.2, color="grey30", lwd = 0.1,alpha=0.5, outlier.shape = NA, position=dodge)+
-  scale_x_discrete( labels=stats[3][[1]]$FeatureX) + #Alternate to have FeatureX: stats[3][[1]]$Featurex or #stats[2][[1]]
+  #scale_x_discrete( labels=stats[3][[1]]$FeatureX) + #Alternate to have FeatureX: stats[3][[1]]$Featurex or #stats[2][[1]]
   scale_y_continuous(limits = c(ymin,ymax),n.breaks=4, name = "rNMP Enrichment")+
   theme_classic(base_size=20)+
   geom_abline(intercept = stats[4][[1]]$coefficients[1], slope = stats[4][[1]]$coefficients[2], color = "black", size = 0.2)+
