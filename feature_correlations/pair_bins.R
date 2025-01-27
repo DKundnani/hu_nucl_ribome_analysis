@@ -101,7 +101,7 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
   #if (percentile) {stats$label<-range[,3]} else {stats$label<-stats$groups;stats$Featurex<-stats$groups}
   stats$label <- stats$groups
   stats<-stats[order(stats$Featurex),]
-  coeff<-lm(ymean ~ Featurex , data = stats)
+  coeff<-lm(ymedian ~ Featurex , data = stats)
   #print(summary(coeff))
   #print(summary(coeff)$adj.r.squared)
   p<-cor.test(as.numeric(stats$ymean), as.numeric(stats$Featurex), method='pearson')
