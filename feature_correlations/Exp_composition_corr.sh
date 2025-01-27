@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #creating reference
+source ~/.bash_profile
 conda activate r_env
 <<COMMENT
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/anno/standardanno/RNAseq
@@ -20,9 +21,10 @@ for file in $(ls *.bed); do
 	done
 done
 COMMENT
+
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/
-file='anno/standardanno/RNAseq/sorted_metadata_1000aroundTSS_withnuc.bed'; bin=1000
-#file='anno/standardanno/RNAseq/sorted_metadata_4-5aroundTSS_withnuc.bed'; bin=4000
+#file='anno/standardanno/RNAseq/sorted_metadata_1000aroundTSS_withnuc.bed'; bin=1000
+file='anno/standardanno/RNAseq/sorted_metadata_4-5aroundTSS_withnuc.bed'; bin=4000
 subtypecol=1
 libmeta='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/heatmaps/libmeta_HEK'
 genome='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38-nucleus-noXY.fa.fai'

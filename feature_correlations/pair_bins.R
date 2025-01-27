@@ -63,6 +63,7 @@ suppressMessages(library(ggplot2, quietly = T))
 suppressMessages(library(ggpubr, quietly = T))
 suppressMessages(library(tidyr, quietly = T))
 suppressMessages(library(plyr, quietly = T))
+suppressMessages(library(dplyr, quietly = T))
 suppressMessages(library(tools,quietly = T)) #for getting file basename
 
 getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, percentile=TRUE){
@@ -115,6 +116,8 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
 mat=read.table(m, sep="\t", header=TRUE)
 mat=na.omit(mat); if (max(mat[exp])>50) {mat[exp]=log2(mat[exp]+1);  mat=mat[mat[exp]>1,]}
 if (rNMP == 26) {mat[26]=(mat[26]+mat[27])/2} #Taking avergae of KOS
+if (length(unique(mat[,5])) < length(mat[,5])) {exp_mat=aggregate(mat[exp], mat[5], FUN=mean);rNMP_mat=aggregate(mat[rNMP], mat[5], FUN=mean); mat = merge(exp_mat,rNMP_mat)}
+
 if (opt$switch) {mat[exp] = (mat[exp]*-1)}
 if (opt$abs) {mat[exp] = abs(mat[exp])}
 if (opt$perc) {
