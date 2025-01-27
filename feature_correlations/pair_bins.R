@@ -139,7 +139,7 @@ p<-ggplot(data, aes(x=groups,y=y, fill=groups))+
   geom_abline(intercept = stats[4][[1]]$coefficients[1], slope = stats[4][[1]]$coefficients[2], color = "black", size = 0.2)+
   stat_cor(label.x = 3, label.y = 20)+
   #stat_summary(fun = "mean", geom="text", size = 2, hjust=0,vjust=20, label=round(stats[[3]]$ymean,2))+
-  stat_summary(fun = "median", geom="text", size = 1.2, vjust=5,label=round(stats[[3]]$ymean,2))+
+  stat_summary(fun = "median", geom="text", size = 1.2, vjust=4,label=round(stats[[3]]$ymean,2))+
   #scale_fill_manual(values=get_brewer_pal("Spectral", n= bins, contrast = c(0.3, 0.8), stretch = F, plot = F))+
   #scale_fill_manual(values=colorRampPalette(c("#F8C6CB","#CB4A42"),  bias=1)(10))+
   scale_fill_manual(values=colorRampPalette(c(colorRampPalette(c("#FFFFFF",col),  bias=1)(11)[4],col),  bias=1)(nrow(data)))+
