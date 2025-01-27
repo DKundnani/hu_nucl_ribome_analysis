@@ -69,7 +69,6 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
   data=df[c(featurex,featurey)]
   colnames(data)<-c('x', 'y')
   #Creating groups
-  data=na.omit(data) ; if (max(data['x']) > 50) {data['x']=log2(data['x']+1); data=data[data[1]>0,]}   
   if (percentile) {data$groups<-as.numeric(cut2(data$x, g=bins)); data$subgroups=as.numeric(ecdf(data$x)(data$x))} else {data$groups=ceiling(data$x/max(data$x, na.rm=TRUE)*bins);data$subgroups=data$x}
   #Creating labels for groups
   range<-as.data.frame(gsub(')',']', levels(cut2(seq(0,100), g=bins))))
@@ -114,6 +113,8 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
 }
 
 mat=read.table(m, sep="\t", header=TRUE)
+mat=na.omit(mat); if (max(mat[exp])>50) {mat[exp]=log2(mat[exp]+1);  mat=mat[mat[exp]>1,]}
+if (rNMP == 26) {mat[26]=(mat[26]+mat[27])/2} #Taking avergae of KOS
 if (opt$switch) {mat[exp] = (mat[exp]*-1)}
 if (opt$abs) {mat[exp] = abs(mat[exp])}
 if (opt$perc) {
@@ -167,8 +168,6 @@ p<-ggplot(data, aes(x=groups,y=y, fill=groups))+
 print(p)
 dev.off()
 
-mat=na.omit(mat); mat=mat[mat[exp]>0,]
-if (max(mat[exp])>50) {mat[exp]=log2(mat[exp]+1);  mat=mat[mat[exp]>0,]}
 scatter_stats<-lm(rNMP ~ exp , data = mat)
 colnames(mat)[exp]='exp'
 png(paste(out,'/',name,"_scatter.png",sep=""), width = 4, height = 4, units = "in", res=600, type="cairo", bg="transparent")
