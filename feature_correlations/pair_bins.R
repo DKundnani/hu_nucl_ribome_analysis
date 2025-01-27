@@ -146,7 +146,7 @@ p<-ggplot(data, aes(x=groups,y=y, fill=groups))+
   #scale_fill_manual(values=get_brewer_pal("BuPu", n= bins, contrast = c(0.3, 0.6), stretch = F, plot = F))+
   #guides(colour = "colorbar", size = "legend", shape = "none")+
   #guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10))+
-  ggtitle(bquote(italic(adj.R)^2 == .(format(stats[[5]], digits = 3))~";"~italic(p) == .(format(stats[[7]], digits = 3))~";"~italic(slope) == .(format(stats[[4]]$coefficients[2], digits = 3))))+
+  ggtitle(bquote(italic(R)^2 == .(format(stats[[5]], digits = 2))~";"~italic(p) == .(format(stats[[7]], digits = 2))~";"~italic(slope) == .(format(stats[[4]]$coefficients[2], digits = 3))))+
   theme(legend.position = "none",panel.border = element_blank(),
         plot.title = element_text(color="black",size=7,hjust=0.5),
         axis.title= element_blank(),
@@ -159,8 +159,8 @@ p<-ggplot(data, aes(x=groups,y=y, fill=groups))+
         panel.grid.major = element_blank(),
         plot.background = element_rect(fill = "transparent",colour = NA),
         strip.background = element_blank(),
-        axis.text.x=element_text(size=8,  angle = 90, hjust=0.75),
-        #axis.text.x=element_text(size=9),
+        #axis.text.x=element_text(size=8,  angle = 90, hjust=0.75),
+        axis.text.x=element_text(size=9),
         axis.text.y=element_text(size=9),
         plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm"))
 
