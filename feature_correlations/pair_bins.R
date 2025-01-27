@@ -168,7 +168,7 @@ print(p)
 dev.off()
 
 mat=na.omit(mat); mat=mat[mat[exp]>0,]
-if (max(mat[exp])>50) {mat[exp]=log2(mat[exp]+1)}
+if (max(mat[exp])>50) {mat[exp]=log2(mat[exp]+1);  mat=mat[mat[exp]>0,]}
 scatter_stats<-lm(rNMP ~ exp , data = mat)
 colnames(mat)[exp]='exp'
 png(paste(out,'/',name,"_scatter.png",sep=""), width = 4, height = 4, units = "in", res=600, type="cairo", bg="transparent")
