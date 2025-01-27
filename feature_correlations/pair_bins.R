@@ -69,7 +69,7 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
   data=df[c(featurex,featurey)]
   colnames(data)<-c('x', 'y')
   #Creating groups
-  data=na.omit(data); data=data[data[1]>0,]
+  data=na.omit(data) ; data['x']=log2(data['x']+1); data=data[data[1]>0,]; 
   if (percentile) {data$groups<-as.numeric(cut2(data$x, g=bins)); data$subgroups=as.numeric(ecdf(data$x)(data$x))} else {data$groups=ceiling(data$x/max(data$x, na.rm=TRUE)*bins);data$subgroups=data$x}
   #Creating labels for groups
   range<-as.data.frame(gsub(')',']', levels(cut2(seq(0,100), g=bins))))
@@ -92,12 +92,14 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
                max   = max(y),
                CI25 =quantile(y, probs = 0.25),
                CI75 =quantile(y, probs = 0.75))
+  
   stats$low<-stats$ymean-stats$se
   #stats$low<-stats$CI25
   stats$high<-stats$ymean+stats$se
   #stats$high<-stats$CI75
   stats$name<-name
-  if (percentile) {stats$label<-range[,3]} else {stats$label<-stats$groups;stats$Featurex<-stats$groups}
+  #if (percentile) {stats$label<-range[,3]} else {stats$label<-stats$groups;stats$Featurex<-stats$groups}
+  stats$label <- stats$groups
   stats<-stats[order(stats$Featurex),]
   coeff<-lm(ymean ~ Featurex , data = stats)
   #print(summary(coeff))
