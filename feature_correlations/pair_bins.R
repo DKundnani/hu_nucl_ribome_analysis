@@ -148,7 +148,7 @@ p<-ggplot(data, aes(x=groups,y=y, fill=groups))+
   #guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10))+
   ggtitle(bquote(italic(adj.R)^2 == .(format(stats[[5]], digits = 3))~";"~italic(p) == .(format(stats[[7]], digits = 3))~";"~italic(slope) == .(format(stats[[4]]$coefficients[2], digits = 3))))+
   theme(legend.position = "none",panel.border = element_blank(),
-        plot.title = element_text(color="black",size=8,hjust=0.5),
+        plot.title = element_text(color="black",size=7,hjust=0.5),
         axis.title= element_blank(),
         axis.ticks = element_line(linewidth=0.3,color = "black"),
         axis.ticks.length = unit(.05, "cm"),
