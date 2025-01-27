@@ -69,7 +69,7 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
   data=df[c(featurex,featurey)]
   colnames(data)<-c('x', 'y')
   #Creating groups
-  data=na.omit(data) ; data['x']=log2(data['x']+1); data=data[data[1]>0,]; 
+  data=na.omit(data) ; if (max(data['x'] > 50) {data['x']=log2(data['x']+1); data=data[data[1]>0,]}   
   if (percentile) {data$groups<-as.numeric(cut2(data$x, g=bins)); data$subgroups=as.numeric(ecdf(data$x)(data$x))} else {data$groups=ceiling(data$x/max(data$x, na.rm=TRUE)*bins);data$subgroups=data$x}
   #Creating labels for groups
   range<-as.data.frame(gsub(')',']', levels(cut2(seq(0,100), g=bins))))
