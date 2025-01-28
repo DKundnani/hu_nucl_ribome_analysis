@@ -72,7 +72,9 @@ Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_counts_sum.tsv -n raroundTSS_regions_KO1exp_raw_KO1 -c '#E377C2' -p -e 14 -r 26 -y 400 -o locationHM/ribo_exp${bin}/ 
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_counts_sum.tsv -n raroundTSS_regions_KO2exp_raw_HEK -c '#D62728' -p -e 15 -r 25 -y 200 -o locationHM/ribo_exp${bin}/ 
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_counts_sum.tsv -n raroundTSS_regions_KO2exp_raw_KO1 -c '#E377C2' -p -e 15 -r 26 -y 400 -o locationHM/ribo_exp${bin}/ 
-
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f raroundTSS_regions_WTexp_raw_ -y 100 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f raroundTSS_regions_KO1exp_raw_ -y 100 -o locationHM/ribo_exp${bin}/
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f raroundTSS_regions_KO2exp_raw_ -y 100 -o locationHM/ribo_exp${bin}/
 
 #Getting normalized percentages
 for nuc in A T; do
@@ -117,7 +119,7 @@ Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_WTexp_EF_ -y 6 -o locationHM/ribo_exp${bin}/ 
 done
 
-
+<<COMMENT
 
 #Getting trends wrt to HEKKO1 Exp
 for nuc in A C G T; do 
@@ -172,7 +174,7 @@ Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i locationHM/ribo_exp${bin}/ -f r${nuc}aroundTSS_regions_KO2exp_EF_ -y 6 -o locationHM/ribo_exp${bin}/ 
 done
 
-
+COMMENT
 for f in $(ls *corr.tsv); do
 R=$(grep sR $f | cut -f3)
 echo -e $f'\t'$R
