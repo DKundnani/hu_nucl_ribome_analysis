@@ -5,8 +5,10 @@ source ~/.bash_profile
 conda activate r_env
 
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/anno/standardanno/RNAseq
+bedtools flank -s -l 1 -r 0 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i metadata.bed | grep protein_coding | bedtools slop -s -l 499 -r 500 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools sort -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | grep -v chrX | grep -v chrY > sorted_metadata_500aroundTSS.bed
 bedtools flank -s -l 1 -r 0 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i metadata.bed | grep protein_coding | bedtools slop -s -l 999 -r 1000 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools sort -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | grep -v chrX | grep -v chrY > sorted_metadata_1000aroundTSS.bed
 bedtools flank -s -l 1 -r 0 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i metadata.bed | grep protein_coding | bedtools slop -s -b 4000 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools flank -s -b 1000 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools sort -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | grep -v chrX | grep -v chrY > sorted_metadata_4-5aroundTSS.bed
+bedtools nuc -fi $hgref -bed sorted_metadata_500aroundTSS.bed -s | tail -n+2  > sorted_metadata_500aroundTSS_withnuc.bed
 bedtools nuc -fi $hgref -bed sorted_metadata_1000aroundTSS.bed -s | tail -n+2  > sorted_metadata_1000aroundTSS_withnuc.bed
 bedtools nuc -fi $hgref -bed sorted_metadata_4-5aroundTSS.bed -s | tail -n+2  > sorted_metadata_4-5aroundTSS_withnuc.bed
 
@@ -23,8 +25,9 @@ done
 
 
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/
-file='anno/standardanno/RNAseq/sorted_metadata_1000aroundTSS_withnuc.bed'; bin=1000
-file='anno/standardanno/RNAseq/sorted_metadata_4-5aroundTSS_withnuc.bed'; bin=4000
+file='anno/standardanno/RNAseq/sorted_metadata_500aroundTSS_withnuc.bed'; bin=500
+#file='anno/standardanno/RNAseq/sorted_metadata_1000aroundTSS_withnuc.bed'; bin=1000
+#file='anno/standardanno/RNAseq/sorted_metadata_4-5aroundTSS_withnuc.bed'; bin=4000
 subtypecol=1
 libmeta='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/heatmaps/libmeta_HEK'
 genome='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38-nucleus-noXY.fa.fai'
