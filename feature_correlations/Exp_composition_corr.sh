@@ -180,11 +180,11 @@ R=$(grep sR $f | cut -f3)
 echo -e $f'\t'$R
 done
 
-cp ../ribo_exp500/*all_line* .
+cp ../ribo_exp500/*WTexp*all_line* .
 rename 'TSS_' 'TSS500_' *
-cp ../ribo_exp1000/*all_line* .
+cp ../ribo_exp1000/*WTexp*all_line* .
 rename 'TSS_' 'TSS1000_' *
-cp ../ribo_exp4000/*all_line* .
+cp ../ribo_exp4000/*WTexp*all_line* .
 rename 'TSS_' 'TSS4000_' *
 
 cp ../ribo_exp500/*WTexp*bins* .
