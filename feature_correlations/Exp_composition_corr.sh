@@ -46,8 +46,8 @@ for nuc in A C G T; do
 bedfiles=$(echo '/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/subnfiltbed/nucl/noXY/poly/'${nuc}'/*bed')
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
 mkdir $outfolder
-bash ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/annotate.sh -r $file -s -c -o $outfolder -b $bedfiles &
-#sed -i 's/_nucl//g' $outfolder/all_counts.tsv
+#bash ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/annotate.sh -r $file -s -c -o $outfolder -b $bedfiles &
+sed -i 's/_nucl//g' $outfolder/all_counts.tsv
 done
 
 
