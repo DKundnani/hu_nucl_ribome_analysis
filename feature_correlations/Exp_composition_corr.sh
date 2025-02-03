@@ -180,7 +180,7 @@ Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/trends_merge.R -i
 done
 
 COMMENT
-for f in $(ls *corr.tsv); do
+for f in $(ls *_WTexp_*corr.tsv); do
 R=$(grep sR $f | cut -f3)
 echo -e $f'\t'$R
 done
