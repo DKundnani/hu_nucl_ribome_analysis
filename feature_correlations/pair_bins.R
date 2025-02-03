@@ -116,14 +116,22 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
 mat=read.table(m, sep="\t", header=TRUE)
 mat=na.omit(mat); if (max(mat[exp])>50) {mat[exp]=log2(mat[exp]+1);  mat=mat[mat[exp]>1,]}
 if (rNMP == 26) {mat[26]=(mat[26]+mat[27])/2} #Taking avergae of KOS
-if (length(unique(mat[,5])) < length(mat[,5])) {exp_mat=aggregate(mat[exp], mat[5], FUN=mean);rNMP_mat=aggregate(mat[rNMP], mat[5], FUN=mean); mat = merge(exp_mat,rNMP_mat)}
+if (length(unique(mat[,5])) < length(mat[,5])) {exp_mat=aggregate(mat[exp], mat[5], FUN=mean);rNMP_mat=aggregate(mat[rNMP], mat[5], FUN=mean); new_mat = merge(exp_mat,rNMP_mat)}
 
 if (opt$switch) {mat[exp] = (mat[exp]*-1)}
 if (opt$abs) {mat[exp] = abs(mat[exp])}
 if (opt$perc) {
-  stats=getstats(mat, name, colnames(mat)[exp],colnames(mat)[rNMP],bins=10,percentile=TRUE)
+  if (length(unique(mat[,5])) < length(mat[,5])) {
+    stats=getstats(new_mat, name, colnames(mat)[exp],colnames(mat)[rNMP],bins=10,percentile=TRUE)
+  } else {
+    stats=getstats(mat, name, colnames(mat)[exp],colnames(mat)[rNMP],bins=10,percentile=TRUE)
+  }
 } else {
-  stats=getstats(mat, name, colnames(mat)[exp],colnames(mat)[rNMP],bins=10,percentile=FALSE)
+  if (length(unique(mat[,5])) < length(mat[,5])) {
+    stats=getstats(new_mat, name, colnames(mat)[exp],colnames(mat)[rNMP],bins=10,percentile=FALSE)
+  } else {
+    stats=getstats(mat, name, colnames(mat)[exp],colnames(mat)[rNMP],bins=10,percentile=FALSE)
+  }
 }
 #stats[3][[1]] = stats[3][[1]][-1,]; rownames(stats[3][[1]])<- stats[3][[1]]$label
 
@@ -143,16 +151,17 @@ p<-ggplot(data, aes(x=groups,y=y, fill=groups))+
   geom_abline(intercept = stats[4][[1]]$coefficients[1], slope = stats[4][[1]]$coefficients[2], color = "black", size = 0.2)+
   stat_cor(label.x = 3, label.y = 20)+
   #stat_summary(fun = "mean", geom="text", size = 2, hjust=0,vjust=20, label=round(stats[[3]]$ymean,2))+
-  stat_summary(fun = "median", geom="text", size = 1.2, vjust=4,label=round(stats[[3]]$ymean,2))+
+  stat_summary(fun = "median", geom="text", size = 1.2, vjust=2,label=round(stats[[3]]$ymean,2))+
   #scale_fill_manual(values=get_brewer_pal("Spectral", n= bins, contrast = c(0.3, 0.8), stretch = F, plot = F))+
   #scale_fill_manual(values=colorRampPalette(c("#F8C6CB","#CB4A42"),  bias=1)(10))+
   scale_fill_manual(values=colorRampPalette(c(colorRampPalette(c("#FFFFFF",col),  bias=1)(11)[4],col),  bias=1)(nrow(data)))+
   #scale_fill_manual(values=get_brewer_pal("BuPu", n= bins, contrast = c(0.3, 0.6), stretch = F, plot = F))+
   #guides(colour = "colorbar", size = "legend", shape = "none")+
   #guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10))+
-  ggtitle(bquote(italic(R)^2 == .(format(stats[[5]], digits = 2))~";"~italic(p) == .(format(stats[[7]], digits = 2))~";"~italic(slope) == .(format(stats[[4]]$coefficients[2], digits = 3))))+
+  #ggtitle(bquote(italic(R)^2 == .(format(stats[[5]], digits = 2))~";"~italic(p) == .(format(stats[[7]], digits = 2))~";"~italic(slope) == .(format(stats[[4]]$coefficients[2], digits = 3))))+
   theme(legend.position = "none",panel.border = element_blank(),
-        plot.title = element_text(color="black",size=7,hjust=0.5),
+        #plot.title = element_text(color="black",size=7,hjust=0.5),
+        plot.title = element_blank(),
         axis.title= element_blank(),
         axis.ticks = element_line(linewidth=0.3,color = "black"),
         axis.ticks.length = unit(.05, "cm"),
