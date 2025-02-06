@@ -38,9 +38,9 @@ done
 
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/
 #file='anno/standardanno/RNAseq/sorted_metadata_500aroundTSS_withnuc.bed'; bin=500
-file='anno/standardanno/RNAseq/sorted_metadata_1000aroundTSS_withnuc.bed'; bin=1000
-file='anno/standardanno/RNAseq/sorted_metadata_4-5aroundTSS_withnuc.bed'; bin=4000
-file='anno/standardanno/RNAseq/sorted_metadata_30-31aroundTSS_withnuc.bed'; bin=30000
+file='anno/standardanno/RNAseq/sorted_metadata_1000downTSS_withnuc.bed'; bin=1000
+file='anno/standardanno/RNAseq/sorted_metadata_4-5downTSS_withnuc.bed'; bin=4000
+file='anno/standardanno/RNAseq/sorted_metadata_9-10downTSS_withnuc.bed'; bin=30000
 
 subtypecol=1
 libmeta='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/heatmaps/libmeta_HEK'
