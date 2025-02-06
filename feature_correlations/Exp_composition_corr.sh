@@ -15,6 +15,14 @@ bedtools nuc -fi $hgref -bed sorted_metadata_1000aroundTSS.bed -s | tail -n+2  >
 bedtools nuc -fi $hgref -bed sorted_metadata_4-5aroundTSS.bed -s | tail -n+2  > sorted_metadata_4-5aroundTSS_withnuc.bed
 bedtools nuc -fi $hgref -bed sorted_metadata_30-31aroundTSS.bed -s | tail -n+2  > sorted_metadata_30-31aroundTSS_withnuc.bed
 
+#Downstream TSS only
+bedtools flank -s -l 1 -r 0 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i metadata.bed | grep protein_coding | bedtools slop -s -l -1 -r 1000 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools sort -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | grep -v chrX | grep -v chrY > sorted_metadata_1000downTSS.bed
+bedtools flank -s -l 1 -r 0 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i metadata.bed | grep protein_coding | bedtools slop -s -l -1 -r 4000 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools flank -s -b 1000 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools sort -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | grep -v chrX | grep -v chrY > sorted_metadata_4-5downTSS.bed
+bedtools flank -s -l 1 -r 0 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i metadata.bed | grep protein_coding | bedtools slop -s -l -1 -r 9000 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools flank -s -b 1000 -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | bedtools sort -g ~/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38.fa.fai -i stdin | grep -v chrX | grep -v chrY > sorted_metadata_9-10downTSS.bed
+bedtools nuc -fi $hgref -bed sorted_metadata_1000downTSS.bed -s | tail -n+2  > sorted_metadata_1000downTSS_withnuc.bed
+bedtools nuc -fi $hgref -bed sorted_metadata_4-5downTSS.bed -s | tail -n+2  > sorted_metadata_4-5downTSS_withnuc.bed
+bedtools nuc -fi $hgref -bed sorted_metadata_9-10downTSS.bed -s | tail -n+2  > sorted_metadata_9-10downTSS_withnuc.bed
+
 
 #16_pct_at        17_pct_gc       18_num_A        19_num_C        20_num_G        21_num_T        22_num_N        23_num_oth      24_seq_len
 
@@ -30,7 +38,7 @@ done
 
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/
 #file='anno/standardanno/RNAseq/sorted_metadata_500aroundTSS_withnuc.bed'; bin=500
-#file='anno/standardanno/RNAseq/sorted_metadata_1000aroundTSS_withnuc.bed'; bin=1000
+file='anno/standardanno/RNAseq/sorted_metadata_1000aroundTSS_withnuc.bed'; bin=1000
 file='anno/standardanno/RNAseq/sorted_metadata_4-5aroundTSS_withnuc.bed'; bin=4000
 file='anno/standardanno/RNAseq/sorted_metadata_30-31aroundTSS_withnuc.bed'; bin=30000
 
