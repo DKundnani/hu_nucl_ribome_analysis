@@ -8,8 +8,8 @@ option_list = list(
               help="input folder",metavar="character"),
   make_option(c("-f", "--files"), type="character", default=NULL, 
               help="filepattern",metavar="character"),
-  make_option(c("-y", "--ymax"), type="integer", default=4, 
-              help="y axis limit",metavar="integer"),
+  make_option(c("-y", "--ymax"), type="character", default=4, 
+              help="y axis limit",metavar="character"),
   make_option(c("-o", "--output_prefix"), type="character", default="out", 
               help="output file name [default %default]", metavar="character")
 );
@@ -18,7 +18,7 @@ opt_parser = OptionParser(option_list=option_list);
 opt = parse_args(opt_parser)
 inp=opt$inputfolder; print(inp)
 file=opt$files; print(file)
-ymax=opt$ymax; print(ymax)
+ymax=opt$ymax; if (ymax > 1) {ymax= as.integer(ymax)} else {ymax= round(as.numeric(ymax), digits = 2)};  print(ymax)
 out=opt$output_prefix; print(out)
 
 #Checking for required input
@@ -68,14 +68,14 @@ for (p in filenames) {
   #cellline=strsplit(unique(seq.df$name),split=paste(file,'_', sep=""))[[1]][4]
   ribo=strsplit(unique(seq.df$name),split='around')[[1]][1]
   color=unname(colors[ribo])
-  colnames(seq.df)[4]=ribo
+  colnames(seq.df)[4]=ribo #using ymean
   if (p == filenames[1]) {
-    mat=seq.df[c('groups','label')]
-  } 
+    mat=seq.df[c('groups','Featurex')]
+  }
   mat=merge(mat,seq.df[c('groups',ribo)])
 }
 
-data=gather(mat[-2], key='ribo',value='ymedian',-groups)
+data=gather(mat, key='ribo',value='ymedian',-c(Featurex,groups))
 png(paste(out,'/',file,'_all_linear_trend.png', sep=""), width = 1.75, height = 1.75, units = "in", res=600, type="cairo", bg="transparent")
 #data$groups<-as.factor(data$groups)
 dodge=position_dodge(width = 0.8)
@@ -112,8 +112,8 @@ plot<-ggplot(data, aes(x=groups,y=ymedian, fill=ribo, colour=ribo))+
         panel.grid.major = element_blank(),
         plot.background = element_rect(fill = "transparent",colour = NA),
         strip.background = element_blank(),
-        axis.text.x=element_text(size=8,  angle = 90, hjust=0.75),
-        #axis.text.x=element_text(size=10),
+        #axis.text.x=element_text(size=8,  angle = 90, hjust=0.75),
+        axis.text.x=element_text(size=9),
         #axis.text.x=element_text(size=9),
         axis.text.y=element_text(size=11),
         plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm"))

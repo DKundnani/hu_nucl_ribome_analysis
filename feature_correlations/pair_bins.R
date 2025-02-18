@@ -101,11 +101,14 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
   #if (percentile) {stats$label<-range[,3]} else {stats$label<-stats$groups;stats$Featurex<-stats$groups}
   stats$label <- stats$groups
   stats<-stats[order(stats$Featurex),]
-  coeff<-lm(ymedian ~ Featurex , data = stats)
+  #coeff<-lm(ymedian ~ Featurex , data = stats)
   #print(summary(coeff))
   #print(summary(coeff)$adj.r.squared)
-  p<-cor.test(as.numeric(stats$ymedian), as.numeric(stats$Featurex), method='pearson')
-  s<-cor.test(as.numeric(stats$ymedian), as.numeric(stats$Featurex), method='spearman')
+  
+  #stats$ymedian <- as.numeric(stats$ymedian) + runif(length(stats$ymedian), -0.0001, 0.0001)
+  coeff<-lm(ymean ~ Featurex , data = stats)
+  p<-cor.test(as.numeric(stats$ymean) , as.numeric(stats$Featurex) , method='pearson', exact = TRUE, use = "complete.obs")
+  s<-cor.test(as.numeric(stats$ymean) , as.numeric(stats$Featurex) , method='spearman',exact = TRUE, use = "complete.obs")
   #print(p$estimate)
   #print(p$p.value)
   #print(s$estimate)
@@ -115,7 +118,7 @@ getstats <- function(df,name,featurex='featurex', featurey='featurey', bins=10, 
 
 mat=read.table(m, sep="\t", header=TRUE)
 mat=na.omit(mat); if (max(mat[exp])>50) {mat[exp]=log2(mat[exp]+1);  mat=mat[mat[exp]>1,]}
-if (rNMP == 26) {mat[26]=(mat[26]+mat[27])/2} #Taking avergae of KOS
+if (rNMP == 28) {mat[28]=(mat[28]+mat[29])/2} #Taking avergae of KOS
 if (length(unique(mat[,5])) < length(mat[,5])) {exp_mat=aggregate(mat[exp], mat[5], FUN=mean);rNMP_mat=aggregate(mat[rNMP], mat[5], FUN=mean); new_mat = merge(exp_mat,rNMP_mat)}
 
 if (opt$switch) {mat[exp] = (mat[exp]*-1)}

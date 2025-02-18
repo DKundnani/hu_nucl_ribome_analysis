@@ -96,11 +96,10 @@ for (i in unique(order$Cellline)) {
 }
 write.table(anno_sum, paste(opt$output_prefix,"_regions_counts_sum.tsv", sep=""),sep="\t", row.names=F, col.names=T, quote=F)
 
-
 anno_average<-anno[,c(1:(ncol-length(annotation_order)))]
 
 for (x in annotation_order) {
-  anno[x]=anno[x]/total_anno[x]
+  anno[x]=anno[x]/total_anno[x]*100
 }
 
 for (i in unique(order$Cellline)) {
@@ -109,9 +108,6 @@ for (i in unique(order$Cellline)) {
 
 write.table(anno_average, paste(opt$output_prefix,"_regions_perc_avg.tsv", sep=""),sep="\t", row.names=F, col.names=T, quote=F)
 
-
-
-
 anno_norm_perc<-anno[,c(1:(ncol-length(annotation_order)))]
 
 for (i in unique(order$Cellline)) {
@@ -119,7 +115,6 @@ for (i in unique(order$Cellline)) {
 }
 
 write.table(anno_norm_perc, paste(opt$output_prefix,"_regions_norm_perc.tsv", sep=""),sep="\t", row.names=F, col.names=T, quote=F)
-
 
 #5.Plotting
 
