@@ -75,11 +75,11 @@ for (p in filenames) {
   mat=merge(mat,seq.df[c('groups',ribo)])
 }
 
-data=gather(mat, key='ribo',value='ymedian',-c(Featurex,groups))
+data=gather(mat, key='ribo',value='ymean',-c(Featurex,groups))
 png(paste(out,'/',file,'_all_linear_trend.png', sep=""), width = 1.75, height = 1.75, units = "in", res=600, type="cairo", bg="transparent")
 #data$groups<-as.factor(data$groups)
 dodge=position_dodge(width = 0.8)
-plot<-ggplot(data, aes(x=groups,y=ymedian, fill=ribo, colour=ribo))+
+plot<-ggplot(data, aes(x=groups,y=ymean, fill=ribo, colour=ribo))+
   geom_point(size = 0.3)+
   geom_smooth(method=lm, size = 0.3, se=FALSE)+
   #stat_poly_line() +
@@ -119,5 +119,3 @@ plot<-ggplot(data, aes(x=groups,y=ymedian, fill=ribo, colour=ribo))+
         plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm"))
 print(plot)
 dev.off()
-
-
