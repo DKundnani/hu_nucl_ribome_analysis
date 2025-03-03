@@ -98,6 +98,7 @@ bedfiles=$(echo '/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bi
 outfolder=$(echo 'locationHM/r'${nuc}'aroundTSS'${bin})
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/get_celltype_info.R -a $outfolder/annotated_counts.tsv -t locationHM/raroundTSS${bin}/annotated_counts.tsv -c $outfolder/all_counts.tsv -b 16 -f $libmeta -o ${outfolder}/r${nuc}aroundTSS &
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts.tsv -c $outfolder/all_counts.tsv -g $genome -f $libmeta -t 1 -o ${outfolder}/r${nuc}aroundTSS &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts.tsv -c $outfolder/all_counts.tsv -g $genome -f $libmeta -t 1 -o ${outfolder}/r${nuc}aroundTSS &
 done
 
 for nuc in C G; do
@@ -137,8 +138,8 @@ Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/trends_merge.R -i locationHM/ribo_exp${bin}/ -f aroundTSS_regions_H9exp_raw_H9 -y 4 -o locationHM/ribo_exp${bin}/trends &
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/trends_merge.R -i locationHM/ribo_exp${bin}/ -f aroundTSS_regions_CD4Texp_EF_CD4T -y 5 -o locationHM/ribo_exp${bin}/trends & 
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/trends_merge.R -i locationHM/ribo_exp${bin}/ -f aroundTSS_regions_H9exp_EF_H9 -y 5 -o locationHM/ribo_exp${bin}/trends &
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/trends_merge.R -i locationHM/ribo_exp${bin}/ -f aroundTSS_regions_CD4Texp_perc_CD4T -y 0.5 -o locationHM/ribo_exp${bin}/trends & 
-Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/trends_merge.R -i locationHM/ribo_exp${bin}/ -f aroundTSS_regions_H9exp_perc_H9 -y 0.5 -o locationHM/ribo_exp${bin}/trends &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/trends_merge.R -i locationHM/ribo_exp${bin}/ -f aroundTSS_regions_CD4Texp_perc_CD4T -y 50 -o locationHM/ribo_exp${bin}/trends & 
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/trends_merge.R -i locationHM/ribo_exp${bin}/ -f aroundTSS_regions_H9exp_perc_H9 -y 50 -o locationHM/ribo_exp${bin}/trends &
 wait
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/trends_merge.R -i locationHM/ribo_exp${bin}/ -f aroundTSS_regions_WTexp_raw_HEK -y 4 -o locationHM/ribo_exp${bin}/trends &
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/trends_merge.R -i locationHM/ribo_exp${bin}/ -f aroundTSS_regions_WTexp_raw_KO1 -y 60 -o locationHM/ribo_exp${bin}/trends &
