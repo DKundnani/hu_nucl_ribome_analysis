@@ -1,4 +1,4 @@
-# rNMP Analysis
+# rNMP randomzed distrubtion and sequence association
 
 ## Installation
 
