@@ -37,19 +37,20 @@ grep -v chrX cpg_away_TSS_center.bed |  grep -v chrY | bedtools intersect -wao -
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/subnfiltbed/nucl/noXY/cpgawayTSS
 for file in $(ls ../*.bed); do grep -v chrX ../../../../anno/standardanno/cpg_awayTSS/cpg_away_TSS_center.bed | grep -v chrY | bedtools slop -b 1000 -i stdin -g $hggenome | bedtools intersect -wa -a $file -b stdin > $(basename $file) & done
 
+conda activate r_env #RE
 libmeta='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/files_short'
 bedfiles='/storage/coda1/p-fstorici3/0/dkundnani3/rich_project_bio-storici/Hu_analysis/subnfiltbed/nucl/noXY/cpgawayTSS/*.bed' #cpgawayTSS rNMPs
 genome='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38-nucleus-noXY.fa.fai'
 
 locationHM () {
     bash ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/annotate.sh -r ${file} -c -o $outfolder -b $bedfiles
-    Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts.tsv -c $outfolder/all_counts.tsv -g $genome -f $libmeta -t $subtypecol -o ${outfolder}/$(basename $file)
+    Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts.tsv -c $outfolder/all_counts.tsv -g $genome -f $libmeta -t $subtypecol -o ${outfolder}/$(basename $file)
     Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/Subtype_ration_plots.R -o $libmeta -f $outfolder/$(basename $file)_subtype_percent.tsv -y 20
 }
 
 cd /storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis
-file='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/anno/proteincoding_expandedexons.bed'
-outfolder='locationHM/cpgawaTSS_pc_expandedexons'
+file='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/anno/proteincoding_expandedintronexons.bed'
+outfolder='locationHM/cpgawaTSS_pc_expandedintronexons'
 subtypecol=7
 locationHM
 
