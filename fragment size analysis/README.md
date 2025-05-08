@@ -27,7 +27,7 @@ Where the values $\ell_i$ are distinct integer lengths, and $c_i$ is the corresp
 - `min_size`: The minimum length in the tables `Treatment` and `NonTreatment`:
 
   $$
-  \texttt{min\_size} = \min(\ell_i)
+  \texttt{minsize} = \min(\ell_i)
   $$
 
 ### Outputs
@@ -47,7 +47,7 @@ From the raw data, we compute:
 1. `Initial_Median`: Median of the `NonTreated` table:
 
    $$
-   \texttt{Initial\_Median} = \ell_k \quad \text{where } k \text{ is the maximal index such that } \frac{\sum_{i=1}^k c_i}{\sum_{i=1}^n c_i} \leq 0.5
+   \texttt{InitialMedian} = \ell_k \quad \text{where } k \text{ is the maximal index such that } \frac{\sum_{i=1}^k c_i}{\sum_{i=1}^n c_i} \leq 0.5
    $$
 
 2. `Goal_Median`: Median of the `Treated` table.
@@ -62,7 +62,7 @@ Where $F(\ell_i)$ is the count corresponding to length $\ell_i$ in the normalize
 
 ### Main Simulation
 
-**Inputs**: $F = \texttt{Fragments}$, $N$ = number of cuts, $\mu = \texttt{min\_size}$.
+**Inputs**: $F = \texttt{Fragments}$, $N$ = number of cuts, $\mu = \texttt{minsize}$.
 
 Steps:
 
@@ -104,11 +104,11 @@ Steps:
 1. Compute:
 
    $$
-   \texttt{extra\_space} = \ell - \mu(m+1)
+   \texttt{extraspace} = \ell - \mu(m+1)
    $$
 
-2. Sample $m$ integers $x_1, \dots, x_m$ (with replacement) from $\{0, \dots, \texttt{extra\_space}\}$.
-3. Order $x_i$ so that $x_1 \leq \cdots \leq x_m$, and define $x_0 = 0$, $x_{m+1} = \texttt{extra\_space}$.
+2. Sample $m$ integers $x_1, \dots, x_m$ (with replacement) from $\{0, \dots, \texttt{extraspace}\}$.
+3. Order $x_i$ so that $x_1 \leq \cdots \leq x_m$, and define $x_0 = 0$, $x_{m+1} = \texttt{extraspace}$.
 4. Compute lengths:
 
    $$
@@ -134,17 +134,17 @@ Steps:
    - Compute:
 
      $$
-     \texttt{Average\_Median} = \text{mean}(\texttt{medians\_try})
+     \texttt{AverageMedian} = \text{mean}(\texttt{medianstry})
      $$
 
    - Decision:
-     - If $|\texttt{Average\_Median} - \texttt{Goal\_Median}| \leq 1$: break
-     - If $\texttt{Average\_Median} < \texttt{Goal\_Median}$:
+     - If $|\texttt{AverageMedian} - \texttt{GoalMedian}| \leq 1$: break
+     - If $\texttt{AverageMedian} < \texttt{GoalMedian}$:
        - $N_{\max} = N$
        - $N_{\text{new}} = \frac{N_{\min} + N_{\max}}{2}$
-     - If $\texttt{Average\_Median} > \texttt{Goal\_Median}$:
+     - If $\texttt{AverageMedian} > \texttt{GoalMedian}$:
        - $N_{\min} = N$
        - $N_{\text{new}} = \frac{N_{\min} + N_{\max}}{2}$
-     - If $\frac{|N_{\text{new}} - N|}{\texttt{Total}} \leq \texttt{threshold\_N}$: break
+     - If $\frac{|N_{\text{new}} - N|}{\texttt{Total}} \leq \texttt{thresholdN}$: break
 
 **Return**: `N`, `medians_try`, `Fragments_try`, `total_cuts_try`, `new_lengths_try`
