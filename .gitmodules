@@ -1,0 +1,3 @@
+[submodule "REZ_and_telomere_analysis/rNMP_human_Nuclear_analysis"]
+	path = REZ_and_telomere_analysis/rNMP_human_Nuclear_analysis
+	url = https://github.com/xph9876/rNMP_human_Nuclear_analysis
