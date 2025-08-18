@@ -141,7 +141,8 @@ if (opt$perc) {
 plot_stats=stats[3][[1]]; write.table(plot_stats,paste(out,'/',name,"_stats.tsv",sep=""), append = FALSE, quote = FALSE, sep = "\t", row.names = TRUE,col.names = TRUE)
 data=stats[1][[1]]; write.table(data,paste(out,'/',name,"_data.tsv",sep=""), append = FALSE, quote = FALSE, sep = "\t", row.names = TRUE,col.names = TRUE)
 
-png(paste(out,'/',name,"bins.png",sep=""), width = 2, height = 2.1, units = "in", res=600, type="cairo", bg="transparent")
+svg(paste(out,'/',name,"bins.svg",sep=""), width = 2, height = 2.1)
+#png(paste(out,'/',name,"bins.png",sep=""), width = 2, height = 2.1, units = "in", res=600, type="cairo", bg="transparent")
 data$groups<-as.factor(data$groups)
 dodge=position_dodge(width = 0.8)
 ymin=0; if(min(data$y)<0) {ymin=-ymax}

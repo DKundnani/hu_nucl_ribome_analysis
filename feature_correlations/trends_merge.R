@@ -76,7 +76,8 @@ for (p in filenames) {
 }
 
 data=gather(mat, key='ribo',value='ymean',-c(Featurex,groups))
-png(paste(out,'/',file,'_all_linear_trend.png', sep=""), width = 1.75, height = 1.75, units = "in", res=600, type="cairo", bg="transparent")
+svg(paste(out,'/',file,'_all_linear_trend.svg', sep=""), width = 1.75, height = 1.75)
+#png(paste(out,'/',file,'_all_linear_trend.png', sep=""), width = 1.75, height = 1.75, units = "in", res=600, type="cairo", bg="transparent")
 #data$groups<-as.factor(data$groups)
 dodge=position_dodge(width = 0.8)
 plot<-ggplot(data, aes(x=groups,y=ymean, fill=ribo, colour=ribo))+
