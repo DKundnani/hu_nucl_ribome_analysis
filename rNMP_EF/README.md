@@ -79,19 +79,19 @@ genome='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici
 mkdir -p $outfolder
 bash $scripts/annotate.sh -r ${range} -c -o $outfolder -b $bedfiles
 ```
-[-r <file with reference annotations or ranges>] 
+[-r file with reference annotations or ranges] 
 
-[-c <calculate counts in the referenced annotations>] 
+[-c calculate counts in the referenced annotations] 
 
-[-f <calculate fraction of coverage in the reference annotations>]
+[-f calculate fraction of coverage in the reference annotations]
 
-[-s <counts are separated based on strand, should be in the 6th column of ranges.bed>]
+[-s counts are separated based on strand, should be in the 6th column of ranges.bed]
 
-[-o <output file name, will be stored in the annotations folder created in the current directory>]
+[-o output file name, will be stored in the annotations folder created in the current directory]
 
-[-d <annotated files will be separated based on nucleus and mitochondria>]
+[-d annotated files will be separated based on nucleus and mitochondria]
 
-[-b <bed file name, wild card enabled for multiple bed files>] 
+[-b bed file name, wild card enabled for multiple bed files] 
 
 
 ### rNMP EF calculation and heatmap matrix generation
