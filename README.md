@@ -3,7 +3,6 @@
 This work amalgamates efforts of multiple computational biologists and mathematicians to dilineate riboncleotide (units of RNA) found to be embedded in human nuclear genomics DNA of multiple cell types. When ribonucleotides are embedded in the DNA, they are in the form of ribonucleoside mono phosphate or futher termed as rNMP(s).
 <a name="readme-top"></a>
 <!--
--->
 
 [![Commits][Commits-shield]][Commits-url]
 [![Contributors][contributors-shield]][contributors-url]
@@ -13,7 +12,7 @@ This work amalgamates efforts of multiple computational biologists and mathemati
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
+-->
 
 <!-- TABLE OF CONTENTS -->
 <details>
