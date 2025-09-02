@@ -45,7 +45,7 @@ To obtain rNMP EF in a defined range of genomic regions while giving heatmaps fo
 <!-- Installation -->
 ## Installation
 ### Getting the code
-The development version from [GitHub](https://github.com/) with:
+Get development version from [GitHub](https://github.com/) with:
 ```sh
 git clone https://github.com/DKundnani/hu_nucl_ribome_analysis
 conda env create -f hu_nucl_ribome_analysis/rNMP_EF/r-env.yml
@@ -70,9 +70,8 @@ outfolder='path/to/outfolder' #Folder to create output files, if already exists,
 subtypecol=7 #column in range.bed that specifies the subtypes. (eg. for CpG related regions, it should specific either islands, shores, shelves,inter-cpg regions )
 scripts='path/to/rNMP_EF/' #location where these scripts are downloaded or cloned
 libmeta='/path/to/order' #Please see order file format in this repository
-bedfiles='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/subnfiltbed/nucl/noXY/*.bed' # List of bed files
-genome='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38-nucleus-noXY.fa.fai' #Genome index file
-
+bedfiles='path/to/*.bed' # List of bed files
+genome='path/to/genome.fa.fai' #Genome index file
 ```
 
 ### Get rNMP counts using annotate.sh
