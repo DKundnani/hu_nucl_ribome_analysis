@@ -4,7 +4,7 @@ To obtain rNMP EF in a defined range of genomic regions while giving heatmaps fo
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
 <!--
--->
+
 
 [![Commits][Commits-shield]][Commits-url]
 [![Contributors][contributors-shield]][contributors-url]
@@ -14,6 +14,7 @@ To obtain rNMP EF in a defined range of genomic regions while giving heatmaps fo
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+-->
 
 <!-- TABLE OF CONTENTS -->
 <details>
