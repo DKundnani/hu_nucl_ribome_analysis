@@ -80,7 +80,6 @@ mkdir -p $outfolder
 bash $scripts/annotate.sh -r ${range} -c -o $outfolder -b $bedfiles
 ```
 [-r file with reference annotations or ranges] 
-
 [-c calculate counts in the referenced annotations] 
 
 [-f calculate fraction of coverage in the reference annotations]
