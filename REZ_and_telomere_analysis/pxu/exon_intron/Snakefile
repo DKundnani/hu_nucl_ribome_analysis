@@ -1,0 +1,98 @@
+# Sample lists
+samples = ["CD4T_tiny"]
+
+# Reference genome file path
+reference_genome = "genome/hg38.fa"
+known_sites = "ref/resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz"
+intron_bed = "ref/hg38_intron.bed"
+exon_bed = "ref/hg38_exon.bed"
+
+# Define the workflow
+rule all:
+    input:
+        expand(
+            "indels_filtered/{sample}_indels_{type}.vcf", 
+            sample=samples, 
+            type=["intron", 'exon']
+        )
+
+# Alignment
+rule bwa_map:
+    input:
+        "trimmed/{sample}_R1.fq.gz",
+        "trimmed/{sample}_R2.fq.gz"
+    output:
+        mapped_bam="mapped_reads/{sample}.bam"
+    threads: 24
+    shell:
+        "bwa mem -t {threads} {reference_genome} {input} -R \'@RG\\tID:1\\tSM:{wildcards.sample}\\tLB:{wildcards.sample}\\tPL:illumina\\tPU:unit1\' "
+        " | samtools view -hb > {output.mapped_bam}"
+
+# Rule for marking duplicates
+rule mark_duplicates:
+    input:
+        mapped_bam="mapped_reads/{sample}.bam"
+    output:
+        marked_bam="mapped_reads/{sample}_marked_duplicates.bam",
+        marked_dup_metrics="mapped_reads/{sample}_marked_dup_metrics.txt"
+    shell:
+        # Use GATK4 MarkDuplicatesSpark to mark duplicate reads
+        "gatk MarkDuplicatesSpark -I {input.mapped_bam} -O {output.marked_bam} -M {output.marked_dup_metrics}"
+
+# Rule for indel realignment
+rule indel_realign:
+    input:
+        marked_bam="mapped_reads/{sample}_marked_duplicates.bam"
+    output:
+        realigned_bam="realigned_reads/{sample}_indel_realigned.bam",
+        recal_data="recal_data/{sample}_recal_data.table"
+    shell:
+        # Use GATK4 BaseRecalibrator and ApplyBQSR to perform base quality score recalibration
+        "gatk BaseRecalibrator -I {input.marked_bam} -O {output.recal_data} -R {reference_genome} --known-sites {known_sites} && "
+        "gatk ApplyBQSR -I {input.marked_bam} -O {output.realigned_bam} -R {reference_genome} --bqsr-recal-file {output.recal_data}"
+
+# Rule for haplotype caller variant calling
+rule haplotype_caller:
+    input:
+        realigned_bam="realigned_reads/{sample}_indel_realigned.bam"
+    output:
+        called_vcf="variants/{sample}_variants_called.vcf"
+    shell:
+        # Use GATK4 HaplotypeCaller to call variants
+        "gatk HaplotypeCaller -I {input.realigned_bam} -O {output.called_vcf} -R {reference_genome}"
+
+# Rule for select VCF files overlapping with intron/exon
+rule overlapping_intron:
+    input:
+        called_vcf="variants/{sample}_variants_called.vcf"
+    output:
+        intron_vcf="variants_filtered/{sample}_variants_intron.vcf"
+    shell:
+        # Use bedtools to intersect vcf
+        "bedtools intersect -a {input.called_vcf} -b {intron_bed} > {output.intron_vcf}"
+
+rule overlapping_exon:
+    input:
+        called_vcf="variants/{sample}_variants_called.vcf"
+    output:
+        exon_vcf="variants_filtered/{sample}_variants_exon.vcf"
+    shell:
+        # Use bedtools to intersect vcf
+        "bedtools intersect -a {input.called_vcf} -b {exon_bed} > {output.exon_vcf}"
+
+# Only keep indels
+rule select_intron_indels:
+    input:
+        intron_vcf="variants_filtered/{sample}_variants_intron.vcf"
+    output:
+        intron_indel="indels_filtered/{sample}_indels_intron.vcf"
+    shell:
+        "awk '{{if(length($4)!=length($5)){{print $0}}}}' {input.intron_vcf} > {output.intron_indel}"
+
+rule select_exon_indels:
+    input:
+        exon_vcf="variants_filtered/{sample}_variants_exon.vcf"
+    output:
+        exon_indel="indels_filtered/{sample}_indels_exon.vcf"
+    shell:
+        "awk '{{if(length($4)!=length($5)){{print $0}}}}' {input.exon_vcf} > {output.exon_indel}"
