@@ -52,7 +52,7 @@ file='anno/standardanno/RNAseq/sorted_metadata_4000upTSS_withnuc.bed'; bin=4000u
 #file='anno/standardanno/RNAseq/sorted_metadata_9-10downTSS_withnuc.bed'; bin=30000
 
 subtypecol=1
-libmeta='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/heatmaps/libmeta'
+libmeta='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/heatmaps/libmeta_KOmerge'
 genome='/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/reference/hg38/filtered_hg38-nucleus-noXY.fa.fai'
 ym=12
 conda activate r_env
@@ -72,10 +72,13 @@ done
 bedfiles=$(echo '/storage/home/hcoda1/5/dkundnani3/p-fstorici3-0/rich_project_bio-storici/Hu_analysis/subnfiltbed/nucl/noXY/*.bed')
 outfolder=$(echo 'locationHM/raroundTSS'${bin})
 mkdir $outfolder
-bash ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/annotate.sh -r $file -s -c -o $outfolder -b $bedfiles &
+#bash ~/p-fstorici3-0/rich_project_bio-storici/bin/TAVIR/annotate.sh -r $file -s -c -o $outfolder -b $bedfiles &
 sed -i 's/_nucl//g' $outfolder/all_counts.tsv
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/get_celltype_info.R -a $outfolder/annotated_counts.tsv -t locationHM/raroundTSS${bin}/annotated_counts.tsv -c $outfolder/all_counts.tsv -b 16 -f $libmeta -o ${outfolder}/raroundTSS
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts.tsv -c $outfolder/all_counts.tsv -g $genome -f $libmeta -t 1 -o ${outfolder}/raroundTSS
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts_same.tsv -c $outfolder/all_counts.tsv -g $genome -s -f $libmeta -t 1 -o ${outfolder}/raroundTSS_same &
+Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/TAVIR/Subtype_ratio.R -a $outfolder/annotated_counts_opp.tsv -c $outfolder/all_counts.tsv -g $genome -s -f $libmeta -t 1 -o ${outfolder}/raroundTSS_opp &
+
 <<COMMENT
 #Trends from EF
 Rscript ~/p-fstorici3-0/rich_project_bio-storici/bin/GIT/hu_nucl_ribome_analysis/feature_correlations/pair_bins.R -m ${outfolder}/raroundTSS_regions_EF_avg.tsv -n raroundTSS_regions_WTexp_EF_HEK -c '#D62728' -p -e 13 -r 25 -y $ym -o locationHM/ribo_exp${bin}/ &
@@ -330,3 +333,10 @@ cp ../ribo_exp1000/*WTexp*bins* .
 rename 'TSS_' 'TSS1000_' *
 cp ../ribo_exp4000/*WTexp*bins* .
 rename 'TSS_' 'TSS4000_' *
+
+
+#Shortlisting genes present in RNAseq analysis for rNMPEF analysis
+for file in ls ../../rNMPEF/4-5kbdown/*.tsv; do
+head -1 $file > $(basename $file)
+awk 'NR==FNR {ids[$1]=1; next} $5 in ids' ../../RNAseq/gene.ids $file >> $(basename $file)
+done
