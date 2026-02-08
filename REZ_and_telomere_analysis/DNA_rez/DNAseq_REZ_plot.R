@@ -1,0 +1,100 @@
+#plot_REZ
+library(karyoploteR)
+library(bedr)
+library(dplyr)
+library(data.table)
+library(regioneR)
+library(stringr)
+library(zoo)
+library(httpgd)
+library(GenomicRanges)
+
+colors <- c(
+  "dsF"="#C55A11",
+  "RE1"="#FFC000",
+  "RE2"="#2E75B6",
+  "RE3"="#00B050"
+)
+
+plot <- function(kp) {
+  kpAxis(kp,cex = 0.8,r0=0.2, r1=0.85, label.margin=-20e5,tick.len=10e5,ymin=0, ymax=4, numticks=2, data.panel=1)
+  kpAxis(kp,cex = 0.8,r0=0.2, r1=0.85, label.margin=-20e5,tick.len=10e5,ymin=0, ymax=4, numticks=2, data.panel=2)
+  
+  #kpAbline(kp, h=1, lty=2,col="#666666",ymin=ymin, ymax=ymax)
+  
+  
+  kpPlotRegions(kp,annot.range,r0 = -0.17, r1=0.17,col=transparent('#9E1717', amount=0.90),avoid.overlapping=FALSE,data.panel=2)
+  #kpPlotRegions(kp1,annot.range,r0 = 0, r1=0.17,col=transparent('#9E1717', amount=0.90),data.panel=1)
+  #kpPlotRegions(kp1,annot.range,r0 = 0, r1=0.17,col=transparent('#9E1717', amount=0.90),data.panel=2)
+  
+  for (n in names(colors)){
+    EF.split=EF.range[which(elementMetadata(EF.range)[,'Sample'] == n)]
+    gr_pos=sort(split(EF.split, strand(EF.split))$`+`); gr_neg=sort(split(EF.split, strand(EF.split))$`-`)
+    kpLines(kp, data=gr_pos, y=gr_pos$EF, data.panel = 1, col=unname(colors[n]), ymin=0, ymax=4, r0=0.2, r1=0.85,lwd=1)
+    kpLines(kp, data=gr_neg, y=gr_neg$EF, data.panel = 2, col=unname(colors[n]), ymin=0, ymax=4, r0=0.2, r1=0.85,lwd=1)
+  }
+}
+
+anno='hg38_cpg_islands.bed'
+
+
+fract=0.9; bin=10;slide=bin-1; en_thresh=1.2
+
+n=length(unique(EF$Sample)); sample_thresh=fract*n
+
+setwd('D:/data/REZ') #nolint
+#Genome
+genome<-read.table('filtered_hg38-nucleus-noXY.fa.fai',sep="\t",header=F)
+custom.genome <- toGRanges(data.frame(chr=genome[1], start=rep(1, nrow(genome)), end=genome[2]))
+#rNMP Data processing
+EF=read.table('DNA_rez_500K_counts.tsv',sep="\t",header=T); REZ=read.table('REZ_500000_1.2_0.9_common_rezs.tsv',sep="\t",header=T)
+
+EF$length=EF$Start-EF$End
+EF$EF=(EF$Count/EF$length)/(colSums(EF['Count'])/colSums(EF['length']))
+
+EF.range=makeGRangesFromDataFrame(EF, keep.extra.columns=T, starts.in.df.are.0based=T)
+
+#Annotation Data processing
+
+annot=read.table(anno,sep="\t",header=F); colnames(annot)[1:7]<-c("chr","start","stop","id","length","strand", "label");annot.range=makeGRangesFromDataFrame(annot[1:7], keep.extra.columns=T, starts.in.df.are.0based=T); strand(annot.range)='*'
+
+pp <- getDefaultPlotParams(plot.type=2)
+pp$ideogramheight=0
+pp$data1height=500
+pp$data2height=500
+pp$leftmargin=0.075
+pp$data1inmargin=0
+pp$data2inmargin=0
+
+svg(paste(anno,'DNA','_22_rez_large.svg', sep=""), height = 15, width = 11)
+#png(paste(anno,'DNA','_22_rez_large.png', sep=""), height = 15, width = 11,units='in',res=1000)
+par(mfrow=c(1,1), mar=c(0,0,0,0))
+kp1 <- plotKaryotype(genome = custom.genome, plot.type=2, plot.params = pp, labels.plotter = NULL)
+kpAddChromosomeNames(kp1, cex = 1.2, xoffset=-0.01,yoffset=0,srt=0)
+#kp<-plotKaryotype(genome = "hg38", chromosomes=paste('chr',seq(1,22), sep=""))
+plot(kp1)
+dev.off()
+
+svg(paste(anno,'DNA','_chr19.svg', sep=""), height = 1.5, width = 3)
+#png(paste(anno,'DNA','_chr19.png', sep=""), height = 1.5, width = 3,units='in',res=1000)
+par(mfrow=c(1,1), mar=c(0,0,0,0))
+kp2 <- plotKaryotype(genome = custom.genome, chromosomes="chr19", plot.type=2, plot.params = pp, labels.plotter = NULL)
+#kpAddChromosomeNames(kp2, cex = 1, xoffset=-0.03,yoffset=0,srt=0)
+#kp<-plotKaryotype(genome = "hg38", chromosomes=paste('chr',seq(1,22), sep=""))
+plot(kp2)
+dev.off()
+
+png('legend.png', height = 1, width = 11,units='in',res=1000)
+par(mfrow=c(1,1), mar=c(0,0,0,0))
+kp3 <- plotKaryotype(genome = custom.genome, chromosomes="chr1", plot.type=2, plot.params = pp, labels.plotter = NULL)
+kpAddBaseNumbers(kp3, tick.dist = 5e7, tick.len = 50, tick.col="black", cex=1,minor.tick.dist = 1e7, minor.tick.len = 25, minor.tick.col = "black", units='Mb')
+kpPlotRegions(kp3, data = REZ.split$`+`[1], r0 = 0.2, r1=0.85, col=transparent('#86ECFA', amount=0.4),border=NA, data.panel=1)
+kpPlotRegions(kp3, data = REZ.split$`+`[1], r0 = 0.2, r1=0.85, col=transparent('#86ECFA', amount=0.4),border=NA, data.panel=1)
+kpPlotRegions(kp3,annot.range,r0 = 0, r1=0.34,col=transparent('#9E1717', amount=0.90),avoid.overlapping=FALSE,data.panel=2)
+dev.off()
+
+png('legend_chr19.png', height = 0.25, width = 3,units='in',res=1000)
+par(mfrow=c(1,1), mar=c(0,0,0,0))
+kp4 <- plotKaryotype(genome = custom.genome, chromosomes="chr19", plot.type=2, plot.params = pp, labels.plotter = NULL)
+kpAddBaseNumbers(kp4, tick.dist = 1e7, tick.len = 90, tick.col="black", cex=0.6,units='Mb')
+dev.off()
